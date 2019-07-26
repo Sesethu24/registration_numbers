@@ -21,9 +21,13 @@ function addNumbers(){
     }
     if (textBtnElem.value) {
         var display = instance.addToList(textBtnElem.value, type);
-        displayTextElem.innerHTML = display;
         textBtnElem.value = ""
     }
+    var node = document.createElement("li");
+    var textnode = document.createTextNode(display);
+    node.appendChild(textnode);
+    document.getElementById("myList").appendChild(node);
+
     localStorage.setItem("list", JSON.stringify(instance.getRegistrations()));
 
     addbtnElem.innerHTML = instance.addToList()
