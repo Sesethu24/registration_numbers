@@ -12,7 +12,7 @@ var storage = localStorage.getItem('addToList');
 
 addbtnElem.innerHTML = instance.addToList()
 
-function addNumbers(){
+function addNumbers() {
 
     var radioBtnChecked = document.querySelector("input[name='town']:checked");
 
@@ -31,5 +31,8 @@ function addNumbers(){
     localStorage.setItem("list", JSON.stringify(instance.getRegistrations()));
 
     addbtnElem.innerHTML = instance.addToList()
+
+    showBtnElem.innerHTML = instance.filter(theFilter);
 }
+
 addbtnElem.addEventListener('click', addNumbers)
