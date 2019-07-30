@@ -24,7 +24,6 @@ describe('Registration_numbers' , function(){
         numbers.addToList("CA 54321");
         numbers.addToList("GP 23456");
         numbers.addToList("CA 67890");
-
         assert.deepEqual(["CA 54321", "CA 67890"] , numbers.theFilter());
     });
     it('should return registration numbers from Bellville only' , function(){

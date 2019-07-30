@@ -23,7 +23,9 @@ li {
   .regNumbers {
       justify-content: center;
       display: flex;
-      resize: initial;
+      margin: 2px;
+      border-style: initial;
+     
   }
   .towns{
       justify-content: center;
@@ -31,6 +33,7 @@ li {
       border: 0px;
       width: 100%;
       height: 2em;
+      
   }
   .display{
       justify-content: center;

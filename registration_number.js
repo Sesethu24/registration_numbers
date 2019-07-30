@@ -10,16 +10,13 @@ function Registrations() {
         }
     }
 
-    function getRegistrations() {
-
-        return regNumbers;
-    }
 
     function theFilter() {
+        
         var myfilter = []
 
         for (var i = 0; i < regNumbers.length; i++) {
-
+    
             if (regNumbers[i].startsWith("CA")) {
                 myfilter.push(regNumbers[i]);
             }
@@ -30,7 +27,7 @@ function Registrations() {
                 myfilter.push(regNumbers[i]);
             }
         }
-
+         
         return myfilter;
     }
     function errorMessages(){
@@ -39,6 +36,11 @@ function Registrations() {
         }
     }
 
+    function getRegistrations() {
+        return regNumbers;
+    }
+    
+console.log(regNumbers)
     return {
         addToList,
         getRegistrations,
