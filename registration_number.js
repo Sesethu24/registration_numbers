@@ -3,7 +3,8 @@ function Registrations() {
     var regNumbers = [];
 
     function addToList(param) {
-
+      
+        
         if (!regNumbers.includes(param)) {
             regNumbers.push(param);
             return param;
@@ -11,27 +12,25 @@ function Registrations() {
     }
 
 
-    function theFilter() {
+    function theFilter(town) {
         
         var myfilter = []
-
-        for (var i = 0; i < regNumbers.length; i++) {
+        regNumbers.forEach(element => {
+            if (element.startsWith(town)) {
+                myfilter.push(element)
+            }
+        });
+        // for (var i = 0; i < regNumbers.length; i++) {
     
-            if (regNumbers[i].startsWith("CA")) {
-                myfilter.push(regNumbers[i]);
-            }
-            else if (regNumbers[i].startsWith("CY")) {
-                myfilter.push(regNumbers[i]);
-            }
-            else if (regNumbers[i].startsWith("CEO")) {
-                myfilter.push(regNumbers[i]);
-            }
-        }
-         
+        //     if (regNumbers[i].startsWith(town)) {
+        //         myfilter.push(regNumbers[i]);
+        //     }
+        // }
+
         return myfilter;
     }
     function errorMessages(){
-        if(!regNumbers){
+        if(regNumbers==""){
             return "Please enter a registration number!"
         }
     }
@@ -40,7 +39,7 @@ function Registrations() {
         return regNumbers;
     }
     
-console.log(regNumbers)
+// console.log(regNumbers)
     return {
         addToList,
         getRegistrations,
