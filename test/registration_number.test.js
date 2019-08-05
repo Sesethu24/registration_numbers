@@ -21,47 +21,55 @@ describe('Registration_numbers' , function(){
     });
 
 
-    it("Should return al reg from Bellville", ()=> {
+    it("should return all registration numbers from Bellville", ()=> {
         let numbers = Registrations();
         numbers.addToList("CY 123556");
         numbers.addToList("CA 34365");
 
-        let reglist = numbers.getRegistrations();
+        numbers.getRegistrations();
 
-        assert.deepEqual(["CY 123556"], numbers.theFilter(reglist, "CY"))
+        assert.deepEqual(["CY 123556"], numbers.theFilter("CY"))
 
     })
     it('should return registration numbers from Cape Town only' , function(){
         var numbers = Registrations();
         numbers.addToList("CA 54321");
-        numbers.addToList("GP 23456");
+        numbers.addToList("CL 23456");
         numbers.addToList("CA 67890");
-        let reglist = numbers.getRegistrations();
-        assert.deepEqual(["CA 54321", "CA 67890"] , numbers.theFilter(reglist, "CA"));
+        numbers.getRegistrations();
+        assert.deepEqual(["CA 54321", "CA 67890"] , numbers.theFilter("CA"));
     });
-    // it('should return registration numbers from Bellville only' , function(){
-    //     var numbers = Registrations();
-    //     numbers.addToList("CY 54321");
-    //     numbers.addToList("CK 23456");
-    //     numbers.addToList("CY 67890");
+    it('should return registration numbers from Grabouw' , function(){
+        var numbers = Registrations();
+        numbers.addToList("CY 54321");
+        numbers.addToList("CEO 23456");
+        numbers.addToList("CEO 67890");
 
-    //     assert.deepEqual(["CY 54321", "CY 67890"] , numbers.theFilter());
-    // });
-    // it('should return registration numbers from Grabouw only' , function(){
-    //     var numbers = Registrations();
-    //     numbers.addToList("CEO 54321");
-    //     numbers.addToList("CEO 23456");
-    //     numbers.addToList("CJ 67890");
+        assert.deepEqual(["CEO 23456", "CEO 67890"] , numbers.theFilter("CEO"));
+    });
+    it('should return registration numbers from Grabouw, Cape Town and Bellville when the all button is checked' , function(){
+        var numbers = Registrations();
+        numbers.addToList("CEO 54321");
+        numbers.addToList("CA 23456");
+        numbers.addToList("CY 67890");
+        numbers.addToList("GP 67891");
+        
+        numbers.getRegistrations();
+        assert.deepEqual(["CEO 54321", "CA 23456", "CY 67890"] , numbers.theFilter("town"));
+    });
 
-    //     assert.deepEqual(["CEO 54321", "CEO 23456"] , numbers.theFilter());
-    // });
-    // it('should return registration numbers from Grabouw, Cape Town and Bellville' , function(){
-    //     var numbers = Registrations();
-    //     numbers.addToList("CEO 54321");
-    //     numbers.addToList("CA 23456");
-    //     numbers.addToList("CY 67890");
-    //     numbers.addToList("GP 67891");
-
-    //     assert.deepEqual(["CEO 54321", "CA 23456", "CY 67890"] , numbers.theFilter());
-    // });
 });
+
+describe("RegEx test", () => {
+    var regex = /[A-Z]{2}\s[0-9]{6}/g;
+    it("should return true", () => {
+        var name = "CA 123456"
+        assert.equal(regex.test(name), true)
+
+    })
+    it("should return false", () => {
+        var name = ".."
+
+        assert.equal(regex.test(name), false)
+    })
+})
