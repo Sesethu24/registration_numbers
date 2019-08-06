@@ -11,12 +11,12 @@ var instance = Registrations();
 
 // var storage = localStorage.getItem('addToList');
 
-// addbtnElem.innerHTML = instance.addToList()
+
 function errorMessages() {
 
     setTimeout(function () {
         errorMessage.innerHTML = "";
-    }, 5000);
+    }, 3000);
 
 }
 
@@ -31,27 +31,45 @@ function createRegNumberElem(regNumber) {
 
 
 }
-
 function addNumbers() {
-    // var display = instance.addToList(textBtnElem.value);
-    // console.log(display);
+
+    if (textBtnElem.value === "") {
+        errorElement.innerHTML = "Please enter reg and select radio button!"
+        errorMessages();
+        return;
+    }
+    if (textBtnElem.value === undefined) {
+      
+       
+        
+    }
+
     var regex = /[A-Z]{2}\s[0-9]{6}/g;
     var newReg = regex.test(textBtnElem.value)
-    console.log(!newReg);
+
+    
 
     if (!newReg) {
         errorElement.innerHTML = "Input is invalid!";
-        return
+        errorMessages();
+        return;
     }
 
     if (textBtnElem.value) {
         var display = instance.addToList(textBtnElem.value);
         textBtnElem.value = ""
 
-        var node = createRegNumberElem(display);
+        if(!display) {
+            errorElement.innerHTML = "Reg number already exists, Please enter a different one!"
+            //errorElement.innerHTML = ""
+            errorMessages();
+        }
+        else{
+            var node = createRegNumberElem(display);
 
         document.getElementById("myList").appendChild(node);
         errorElement.innerHTML = ""
+        }
 
     }
 
@@ -60,7 +78,7 @@ function addNumbers() {
 
 
 }
-//display.innerHTML = instance.erroMessages();
+
 
 showBtnElem.addEventListener('click', function () {
 
@@ -74,17 +92,16 @@ showBtnElem.addEventListener('click', function () {
 
     let theFilteredTowns = [];
 
-    // decide what to display based on which radio button was chosen
     if (checkedBtn === "town") {
         theFilteredTowns = instance.getRegistrations();
     } else {
         theFilteredTowns = instance.theFilter(checkedBtn)
     }
 
-    // remove all the current reg numbers
+
     document.getElementById("myList").innerHTML = "";
 
-    // put the filtered reg numbers back on the screen
+
     for (var i = 0; i < theFilteredTowns.length; i++) {
 
         var currentRegNumber = theFilteredTowns[i];

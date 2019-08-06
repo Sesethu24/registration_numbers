@@ -9,9 +9,7 @@
 </head>
 <body>
 
-  <div class="error">
-     "display message here!"
-  </div>
+  
     </div>
     <div class="row">
       <div class="col-12">
@@ -19,7 +17,7 @@
         <span>
           <h1>Registration Numbers </h1>
 
-              <input type="text" id="idea" name="" class="textField" placeholder="Enter registration number" value="" onkeyup="this.value=this.value.toUpperCase();"> 
+              <input type="text" id="idea" name="" class="textField" placeholder="Enter registration number" maxlength="10" value="" onkeyup="this.value=this.value.toUpperCase();"> 
         </span>
         
        </div>
@@ -38,7 +36,7 @@
           <input type="radio" name="town" class="radioBtn" value="CA"> Cape Town
           <input type="radio" name="town" class="radioBtn" value="CY"> Bellville
           <input type="radio" name="town" class="radioBtn" value="CEO"> Grabouw
-          <input type="radio" name="town" class="radioBtn" value="town"> All
+          <input type="radio" name="town" class="radioBtn" value=""> All
         </div>
          </div>
        </div>
@@ -62,7 +60,9 @@
         
             </div>
          </div>
-       
+         <div class="error">
+         
+       </div>
     
 </body>
 

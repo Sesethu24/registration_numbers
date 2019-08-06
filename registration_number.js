@@ -4,13 +4,10 @@ function Registrations() {
 
     function addToList(param) {
 
-
+       
         if (!regNumbers.includes(param)) {
             regNumbers.push(param);
             return param;
-        }
-        else {
-            return "err"
         }
     }
     function theFilter(town) {
@@ -24,6 +21,8 @@ function Registrations() {
 
         return myfilter;
     }
+
+    
 
     function getRegistrations() {
         return regNumbers;

@@ -1,5 +1,5 @@
 body {
-    background-image: url(car.jpeg);
+    background-image: url(cars.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
     
@@ -41,4 +41,9 @@ li {
       justify-content: center;
       display: flex;
   }
-  
+  .error{
+      justify-content: center;
+      display: flex;
+      font-size: 30px;
+      color: deeppink;
+  }
