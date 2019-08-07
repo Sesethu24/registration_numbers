@@ -15,7 +15,7 @@ var instance = Registrations();
 function errorMessages() {
 
     setTimeout(function () {
-        errorMessage.innerHTML = "";
+        document.querySelector(".error").innerHTML = "";
     }, 2000);
 
 }
@@ -56,6 +56,7 @@ function addNumbers() {
             errorElement.innerHTML = "Reg number already exists, Please enter a different one!"
             //errorElement.innerHTML = ""
             errorMessages();
+            return;
         }
         else {
             var node = createRegNumberElem(display);
@@ -67,51 +68,30 @@ function addNumbers() {
     }
 
     // localStorage.setItem("list", JSON.stringify(instance.getRegistrations()));
-
-
-
 }
 
 
 showBtnElem.addEventListener('click', function () {
-
-    
-    var checkedBtn = "town";
-
+    errorElement.innerHTML = '';
     var selectedTown = document.querySelector(".radioBtn:checked");
+    if (selectedTown != null) {
+        var checkedBtn = selectedTown.value;
+        console.log(checkedBtn);
+        let theFilteredTowns = instance.theFilter(checkedBtn);
+        document.getElementById("myList").innerHTML = "";
+        for (var i = 0; i < theFilteredTowns.length; i++) {
 
-    if (selectedTown) {
-        checkedBtn = selectedTown.value;
-    }
-    if (checkedBtn.value === undefined) {
-       errorElement.innerHTML = " First select a town!"
-       errorMessages();
-    }
+            var currentRegNumber = theFilteredTowns[i];
+            var node = createRegNumberElem(currentRegNumber);
+            document.getElementById("myList").appendChild(node);
 
+        }
 
-    let theFilteredTowns = [];
-
-    if (checkedBtn === "town") {
-        theFilteredTowns = instance.getRegistrations();
     } else {
-        theFilteredTowns = instance.theFilter(checkedBtn)
+
+        errorElement.innerHTML = " First select a town!"
+        errorMessages();
     }
-
-
-    document.getElementById("myList").innerHTML = "";
-
-
-    for (var i = 0; i < theFilteredTowns.length; i++) {
-
-        var currentRegNumber = theFilteredTowns[i];
-        var node = createRegNumberElem(currentRegNumber);
-        document.getElementById("myList").appendChild(node);
-
-    }
-
-
-
-
 });
 
 addbtnElem.addEventListener('click', addNumbers)

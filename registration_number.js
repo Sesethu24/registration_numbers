@@ -12,7 +12,7 @@ function Registrations() {
     }
     function theFilter(town) {
 
-        var myfilter = []
+        var myfilter = [];
         regNumbers.forEach(element => {
             if (element.startsWith(town)) {
                 myfilter.push(element)
