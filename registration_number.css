@@ -1,8 +1,9 @@
 body {
-    background-image: url(cars.jpeg);
+    /* background-image: url(cars.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
-    
+     */
+     background-color: pink;
 }
 
 li {
@@ -45,5 +46,5 @@ li {
       justify-content: center;
       display: flex;
       font-size: 30px;
-      color: deeppink;
+      color: red;
   }

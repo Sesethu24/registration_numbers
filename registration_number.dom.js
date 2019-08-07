@@ -16,7 +16,7 @@ function errorMessages() {
 
     setTimeout(function () {
         errorMessage.innerHTML = "";
-    }, 3000);
+    }, 2000);
 
 }
 
@@ -28,8 +28,6 @@ function createRegNumberElem(regNumber) {
     var textnode = document.createTextNode(regNumber);
     node.appendChild(textnode);
     return node;
-
-
 }
 function addNumbers() {
 
@@ -39,18 +37,13 @@ function addNumbers() {
         return;
     }
     if (textBtnElem.value === undefined) {
-      
-       
-        
     }
 
     var regex = /[A-Z]{2}\s[0-9]{6}/g;
     var newReg = regex.test(textBtnElem.value)
 
-    
-
     if (!newReg) {
-        errorElement.innerHTML = "Input is invalid!";
+        errorElement.innerHTML = "A valid reg number consists of 2 or 3 letters, a space, followed by 6 to 7 digits, please try again";
         errorMessages();
         return;
     }
@@ -59,16 +52,16 @@ function addNumbers() {
         var display = instance.addToList(textBtnElem.value);
         textBtnElem.value = ""
 
-        if(!display) {
+        if (!display) {
             errorElement.innerHTML = "Reg number already exists, Please enter a different one!"
             //errorElement.innerHTML = ""
             errorMessages();
         }
-        else{
+        else {
             var node = createRegNumberElem(display);
 
-        document.getElementById("myList").appendChild(node);
-        errorElement.innerHTML = ""
+            document.getElementById("myList").appendChild(node);
+            errorElement.innerHTML = ""
         }
 
     }
@@ -82,6 +75,7 @@ function addNumbers() {
 
 showBtnElem.addEventListener('click', function () {
 
+    
     var checkedBtn = "town";
 
     var selectedTown = document.querySelector(".radioBtn:checked");
@@ -89,6 +83,11 @@ showBtnElem.addEventListener('click', function () {
     if (selectedTown) {
         checkedBtn = selectedTown.value;
     }
+    if (checkedBtn.value === undefined) {
+       errorElement.innerHTML = " First select a town!"
+       errorMessages();
+    }
+
 
     let theFilteredTowns = [];
 
