@@ -4,13 +4,21 @@ var radioBtnElem = document.querySelectorAll(".radioBtn");
 var showBtnElem = document.querySelector(".showBtn");
 var displayTextElem = document.querySelector(".box");
 var errorElement = document.querySelector(".error");
+var resetElem = document.querySelector(".resetBtn");
 
-// var storage = localStorage.getItem('list') ? JSON.parse(localStorage.getItem('list')) : [];
+let plates = [];
+if (localStorage["list"]) {
+    plates = JSON.parse(localStorage["list"])
+}
 
-var instance = Registrations();
+//  var storage = localStorage.getItem('list') ? JSON.parse(localStorage.getItem('list')) : [];
 
-// var storage = localStorage.getItem('addToList');
+var instance = Registrations(plates);
 
+var storage = localStorage.getItem('addToList');
+
+ //gets the list of all the reg numbers to display
+createRegNumList(instance.getRegistrations());
 
 function errorMessages() {
 
@@ -22,13 +30,12 @@ function errorMessages() {
 
 
 function createRegNumberElem(regNumber) {
-
-
     var node = document.createElement("li");
     var textnode = document.createTextNode(regNumber);
     node.appendChild(textnode);
     return node;
 }
+
 function addNumbers() {
 
     if (textBtnElem.value === "") {
@@ -54,11 +61,11 @@ function addNumbers() {
 
         if (!display) {
             errorElement.innerHTML = "Reg number already exists, Please enter a different one!"
-            //errorElement.innerHTML = ""
+
             errorMessages();
             return;
         }
-        else {
+        else { 
             var node = createRegNumberElem(display);
 
             document.getElementById("myList").appendChild(node);
@@ -67,11 +74,20 @@ function addNumbers() {
 
     }
 
-    // localStorage.setItem("list", JSON.stringify(instance.getRegistrations()));
+    localStorage.setItem("list", JSON.stringify(instance.getRegistrations()));
 }
+function createRegNumList(regNumberList){
+    for (var i = 0; i < regNumberList.length; i++) {
+        var currentRegNumber = regNumberList[i];
+        //createRegNumberElem(currentRegNumber)
+        
+        var node = createRegNumberElem(currentRegNumber);
+        document.getElementById("myList").appendChild(node);
+        
+    }
+}
+function filterFunction() {
 
-
-showBtnElem.addEventListener('click', function () {
     errorElement.innerHTML = '';
     var selectedTown = document.querySelector(".radioBtn:checked");
     if (selectedTown != null) {
@@ -79,19 +95,47 @@ showBtnElem.addEventListener('click', function () {
         console.log(checkedBtn);
         let theFilteredTowns = instance.theFilter(checkedBtn);
         document.getElementById("myList").innerHTML = "";
-        for (var i = 0; i < theFilteredTowns.length; i++) {
 
-            var currentRegNumber = theFilteredTowns[i];
-            var node = createRegNumberElem(currentRegNumber);
-            document.getElementById("myList").appendChild(node);
-
-        }
+        // write function for this for loop
+        // it should take a list of reg numbers
+        createRegNumList(theFilteredTowns);
+        // for (var i = 0; i < theFilteredTowns.length; i++) {
+        //     var currentRegNumber = theFilteredTowns[i];
+        //     //createRegNumberElem(currentRegNumber)
+            
+        //     var node = createRegNumberElem(currentRegNumber);
+        //     document.getElementById("myList").appendChild(node);
+            
+        // }
+        // // function ends
+        // then call Andre :-)      
 
     } else {
 
         errorElement.innerHTML = " First select a town!"
         errorMessages();
     }
+}
+resetElem.addEventListener('click', function () {
+
+    window.location.reload();
+    localStorage.clear();
+
 });
 
+// function updateTowns() {
+//     var selectedTowns = document.querySelector(".radioBtn:checked");
+//     var checked = selectedTowns.value;
+//     var update = instance.theFilter(checked)
+//     for (let i = 0; i < update.length; i++) {
+
+//         var currentRegNumber = theFilteredTowns[i];
+//         var node = createRegNumberElem(currentRegNumber);
+//         document.getElementById("myList").appendChild(node);
+
+//     }
+//}
+
+
 addbtnElem.addEventListener('click', addNumbers)
+showBtnElem.addEventListener('click', filterFunction)

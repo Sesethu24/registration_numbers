@@ -62,13 +62,25 @@ describe('Registration_numbers', function () {
 
 describe("RegEx test", () => {
     var regex = /[A-Z]{2}\s[0-9]{6}/g;
-    it("should return true", () => {
+    it("should return true ", () => {
         var name = "CA 123456"
         assert.equal(regex.test(name), true)
 
     })
+    
+     it("should check if the reg number matches the regex, meaning that it has at least 2 characters a space and 6 digits ", function ()  {
+        var regex = /[A-Z]{2}\s[0-9]{6}/g;
+        var name = "CA 123456"
+            assert.equal(regex.test(name), true)
+    
+        })
     it("should return false", () => {
         var name = ".."
+
+        assert.equal(regex.test(name), false)
+    })
+    it("should return false if the reg numbers dont match the regex and not allow it to be added to the list", () => {
+        var name = "CA12345"
 
         assert.equal(regex.test(name), false)
     })

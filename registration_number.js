@@ -1,10 +1,11 @@
-function Registrations() {
+function Registrations(plate) {
 
-    var regNumbers = [];
+    var regNumbers = plate;
 
     function addToList(param) {
 
-       
+        // error checking in here
+        
         if (!regNumbers.includes(param)) {
             regNumbers.push(param);
             return param;
@@ -21,9 +22,6 @@ function Registrations() {
 
         return myfilter;
     }
-
-    
-
     function getRegistrations() {
         return regNumbers;
     }

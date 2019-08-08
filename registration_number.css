@@ -48,3 +48,7 @@ li {
       font-size: 30px;
       color: red;
   }
+  .resetter{
+      justify-content: center;
+      display: flex;
+  }
