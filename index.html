@@ -1,83 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="registration_number.css">
-    <title>registrations</title>
-</head>
-<body>
 
-  
-    </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="registration_number.css">
+  <link rel="stylesheet" type="text/css" href="registration-grid.css">
+  <title>registrations</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+  <script type="text/x-template" class="regTemplate">
+      {{#each myTemp}}
+    <li class="theList">
+      {{this}}</li>
+    {{/each}}
+    </script>
+</head>
+
+<body>
+  <div class="col-6">
     <div class="row">
       <div class="col-12">
         <div class="regNumbers ">
-        <span>
-          <h1>Registration Numbers </h1>
+          <span>
+            <h1>Registration Numbers </h1>
 
-              <input type="text" id="idea" name="" class="textField" placeholder="Enter registration number" maxlength="10" value="" onkeyup="this.value=this.value.toUpperCase();"> 
-                 <br> 
-                 <br>
-              e.g CA 123456
-                <br>
-                  
-            </span>
-        
-       </div>
+            <input type="text" id="idea" name="" class="textField" placeholder="Enter registration number"
+              maxlength="10" value="" onkeyup="this.value=this.value.toUpperCase();">
+            <br>
+            <br>
+            e.g CA 123456
+            <br>
+
+          </span>
+
+        </div>
       </div>
     </div>
     <div class="row">
-            <div class="col-12">
-              <div class="click">
-              <input type="submit" id="add" class="addBtn" value="add">
-              </div>
-            </div><br>
+      <div class="col-12">
+        <div class="click">
+          <input type="submit" id="add" class="addBtn" value="add">
+        </div>
+      </div>
+      </div><br>
+      <br>
+      <div class="row">
+        <div class="col-12">
+          <div class="towns">
+            <input type="radio" name="town" class="radioBtn" value="CA"> Cape Town
+            <input type="radio" name="town" class="radioBtn" value="CY"> Bellville
+            <input type="radio" name="town" class="radioBtn" value="CEO"> Grabouw
+            <input type="radio" name="town" class="radioBtn" value=""> All
+          </div>
+        </div>
+      </div>
+   
+    <div class="row">
+      <div class="col-12">
+        <div class="display">
+          <input type="submit" id="show" class="showBtn" value="show">
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class=resetter>
+      <input type="submit" class="resetBtn" value="reset">
+    </div>
+    <div class="row">
+      <div class="col-12">
+
+
+        <ul id="myList" style="list-style:none">
+          <div class="box"></div>
+
+        </ul>
+
+
+      </div>
+    </div>
+
+    <div class="error">
+
+    </div>
+  </div>
+
+  <!-- this is my 2nd html -->
+
+  <div class="col-6">
+
+    <div class="row">
+      <div class="col-12">
+        <div class="regNumbers ">
+          <span>
+            <h1>Registration Numbers </h1>
+
+            <input type="text" id="idea" name="" class="textTemp" placeholder="Enter registration number"
+            maxlength="10" value="" onkeyup="this.value=this.value.toUpperCase();">
             <br>
-     <div class="row">
-       <div class="col-12">
-         <div class="towns">
-          <input type="radio" name="town" class="radioBtn" value="CA"> Cape Town
-          <input type="radio" name="town" class="radioBtn" value="CY"> Bellville
-          <input type="radio" name="town" class="radioBtn" value="CEO"> Grabouw
-          <input type="radio" name="town" class="radioBtn" value=""> All
+            <br>
+            e.g CA 123456
+            <br>
+
+          </span>
+
         </div>
-         </div>
-       </div>
-       </div>
-       <div class="row">
-         <div class="col-12">
-           <div class="display">
-              <input type="submit" id="show" class="showBtn" value="show">
-         </div>
-        </div>
-       </div>
-       <br>
-    
-       <div class=resetter>
-        <input type="submit" class="resetBtn" value="reset">
-       </div>
-       <div class="row">
-         <div class="col-12">
-            
-              
-              <ul id="myList" style="list-style:none">
-                  <div class="box"></div> 
-                  
-              </ul>
-                
-        
+      </div>
+    </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="click">
+            <input type="submit" id="addTemp" class="addTempBtn" value="add">
+          </div>
+        </div><br>
+        <br>
+        <div class="row">
+          <div class="col-12">
+            <div class="towns">
+              <input type="radio" name="town" class="radioTempBtn" value="CA"> Cape Town
+              <input type="radio" name="town" class="radioTempBtn" value="CY"> Bellville
+              <input type="radio" name="town" class="radioTempBtn" value="CEO"> Grabouw
+              <input type="radio" name="town" class="radioTempBtn" value=""> All
             </div>
-         </div>
-         
-         <div class="error">
-         
-       </div>
-    
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="display">
+            <input type="submit" id="showTemp" class="showTempBtn" value="show">
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class=resetter>
+        <input type="submit" class="resetTempBtn" value="reset">
+      </div>
+      <div class="row">
+        <div class="col-12">
+
+
+          <ul id="myList" style="list-style:none">
+            <div class="tempBox"></div>
+
+          </ul>
+
+
+        </div>
+      </div>
+      <div class="errors">
+
+      </div>
+   
+  </div>
 </body>
 
 <script src="registration_number.js" charset="utf-8"></script>
 <script src="registration_number.dom.js" charset="utf-8"></script>
+<script src="template.js" charset="utf-8"></script>
 
 </html>

@@ -52,6 +52,7 @@ function addNumbers() {
  
    }
 function createRegNumList(regNumberList) {
+    
     for (var i = 0; i < regNumberList.length; i++) {
         var currentRegNumber = regNumberList[i];
         var node = createRegNumberElem(currentRegNumber);

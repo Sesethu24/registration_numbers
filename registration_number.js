@@ -40,7 +40,7 @@ function Registrations(plate) {
     function getRegistrations() {
         return regNumbers;
     }
-console.log(regNumbers);
+
 
     function getErrorMessages() {
         return error;
