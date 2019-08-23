@@ -42,7 +42,7 @@ function addNumbers() {
             errorElement.innerHTML = instance.getErrorMessages();
             errorMessages();
             return;
-        }
+        } 
         else {
             var node = createRegNumberElem(display);
             document.getElementById("myList").appendChild(node);

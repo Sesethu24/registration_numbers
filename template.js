@@ -8,21 +8,19 @@ var resetElement = document.querySelector(".resetTempBtn");
 
 var myTemplate = document.querySelector(".regTemplate").innerHTML;
 var registrations = document.querySelector(".regData");
-
 var regTemplate = Handlebars.compile(myTemplate);
 
-displayTextElement.innerHTML = regTemplate({regTemp: [] });
-    
-
-
 let temps = [];
-if (localStorage["list"]) {
-    temps = JSON.parse(localStorage["list"])
+if (localStorage["regs"]) {
+    temps = JSON.parse(localStorage["regs"])
 }
+
 
 var temp = Registrations(temps);
 
 var store = localStorage.getItem('addToList');
+
+createRegNumTemp(temp.getRegistrations());
 
 function errorMessage() {
 
@@ -32,25 +30,46 @@ function errorMessage() {
 
 }
 
-function regTemp(){
-  
+function regTemp() {
+
     var displayTemp = textBtnElement.value;
-        
     var validReg = temp.addToList(displayTemp);
     textBtnElement.value = ""
     if (!validReg) {
-        errorElem.innerHTML = temp.getErrorMessage();
+        errorElem.innerHTML = temp.getErrorMessages();
         errorMessage();
         return;
     }
     else {
-     displayTextElement.innerHTML = regTemplate(myList);
-     //localStorage.setItem("list", JSON.stringify(regTemplate.getRegistrations()));
+        
+        errorElement.innerHTML = ""
+        localStorage.setItem("regs", JSON.stringify(temp.getRegistrations()));
+        displayTextElement.innerHTML = regTemplate({ myTemp: temps });
     }
 }
-function regFilter(){
+function createRegNumTemp(regNumberTemp) {
+    
+        var currentRegNum = regNumberTemp
+        displayTextElement.innerHTML = regTemplate({ myTemp: currentRegNum });
+       
+    }
 
+function regFilter() {
+
+    errorElem.innerHTML = '';
+    var selected = document.querySelector(".radioTempBtn:checked");
+    if (selected != null) {
+        var checkedBtnElem = selected.value;
+        let theFiltered = temp.theFilter(checkedBtnElem);
+        createRegNumTemp(theFiltered);
+
+    } 
+    else {
+        errorElem.innerHTML = " First select a town!"
+        errorMessage();
+    }
 }
+
 resetElement.addEventListener('click', function () {
 
     window.location.reload();
