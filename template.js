@@ -73,7 +73,7 @@ function regFilter() {
 resetElement.addEventListener('click', function () {
 
     window.location.reload();
-    localStorage.clear();
+    localStorage.removeItem('regs');
 
 });
 

@@ -78,7 +78,7 @@ function filterFunction() {
 resetElem.addEventListener('click', function () {
 
     window.location.reload();
-    localStorage.clear();
+    localStorage.removeItem("list");
 
 });
 
