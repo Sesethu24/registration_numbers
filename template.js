@@ -26,7 +26,7 @@ function errorMessage() {
 
     setTimeout(function () {
         document.querySelector(".errors").innerHTML = "";
-    }, 2000);
+    }, 3000);
 
 }
 

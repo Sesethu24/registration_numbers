@@ -13,8 +13,12 @@ function Registrations(plate) {
 
         var regex = /[A-Z]{2}\s[0-9]{6}/g;
         var newReg = regex.test(param)
-        if (!newReg) {
-            error = "A valid reg number consists of 2 or 3 letters, a space, followed by 6 to 7 digits, please try again";
+
+        var regex = /([A-Z]){2}\s+([0-9]){3}\s([0-9]){3}/g;
+        var newReg2 = regex.test(param)
+
+        if (!newReg && !newReg2) {
+            error = "please check the registrations examples above for valid registration numbers!";
             return false;
         }
 

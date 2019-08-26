@@ -21,7 +21,7 @@ function errorMessages() {
 
     setTimeout(function () {
         document.querySelector(".error").innerHTML = "";
-    }, 2000);
+    }, 3000);
 
 }
 function createRegNumberElem(regNumber) {
